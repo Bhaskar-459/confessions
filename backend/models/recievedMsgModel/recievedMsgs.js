@@ -2,9 +2,10 @@ import userModel from '../../database/schemas/userSchema.js';
 
 let recievedmsgs = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { userName } = req.params;
+        // console.log(userName);
         const user = await userModel.findOne({
-            name
+            name:userName
         });
         if (!user) {
             return res.status(400).json({
