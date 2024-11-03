@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 
+const apiurl = process.env.REACT_APP_API_URL;
+
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -9,7 +11,7 @@ function Login() {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/login', {
+            const response = await fetch(`${apiurl}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,7 +25,7 @@ function Login() {
                 // If the response indicates the user is found, save the username to local storage
                 localStorage.setItem('username', username);
                 alert('Login successful!');
-                // Redirect or navigate to another page if needed
+                window.location.reload();
             } else {
                 alert(data.message || 'Login failed. Please check your credentials.');
             }

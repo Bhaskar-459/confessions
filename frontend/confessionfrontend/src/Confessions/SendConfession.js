@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import CryptoJS from 'crypto-js'; // Import CryptoJS
 import './SendCofession.css';
 
+const apiurl = process.env.REACT_APP_API_URL;
+const secretKey = process.env.REACT_APP_SECRET_KEY;
+
 const SendConfession = () => {
     const [receiver, setReceiver] = useState('');
     const [message, setMessage] = useState('');
@@ -15,13 +18,10 @@ const SendConfession = () => {
             alert('User not logged in.');
             return;
         }
-
-        // Encrypt the message using a secret key
-        const secretKey = 'your-secret-key'; // Replace with a secure key or environment variable
         const encryptedMessage = CryptoJS.AES.encrypt(message, secretKey).toString();
 
         try {
-            const response = await fetch('http://localhost:5000/api/sendmsg', {
+            const response = await fetch(`${apiurl}/api/sendmsg`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const SendConfession = () => {
             <h2>Send a Confession</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="receiver">Receiver:</label>
+                    <label htmlFor="receiver">Receiver</label>
                     <input
                         type="text"
                         id="receiver"
@@ -67,7 +67,7 @@ const SendConfession = () => {
                         required
                     ></textarea>
                 </div>
-                <button type="submit">Send</button>
+                <button type="submit">Confess</button>
             </form>
         </div>
     );
