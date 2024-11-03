@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import bcrypt from 'bcrypt';
 
 // Import Routes
 import apiRoutes from './controllers/routes.js';
