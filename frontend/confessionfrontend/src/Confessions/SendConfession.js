@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SendCofession.css';
 
 const SendConfession = () => {
     const [receiver, setReceiver] = useState('');

@@ -1,0 +1,30 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+textarea {
+    font-size: 14px;
+}
+
+textarea {
+    height: 100px;
+}
+
+form button {
+    align-self: center;
+    padding: 10px 20px;
+    background-color: yellow;
+}

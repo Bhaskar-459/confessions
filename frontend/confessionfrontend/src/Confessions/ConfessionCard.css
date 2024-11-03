@@ -1,0 +1,28 @@
+.confession-card {
+    background-color: yellow;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.confession-card:hover {
+    transform: scale(1.02);
+}
+
+.confession-card h2 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.confession-card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.confession-card small {
+    display: block;
+    text-align: right;
+    color: #666;
+}
