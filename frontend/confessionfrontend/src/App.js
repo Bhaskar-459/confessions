@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Login from './Login/Login';
 import Main from './Main/Main';
 import Credits from './Credits';
+import UserDetails from './UserDetails';
 import './App.css'; // Import the new CSS
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           "Sometimes the words we don't say are the ones that mean the most. Share your heart and let the silence speak."
         </p>
       </header>
+      <UserDetails />
       <div className="content">
         {isLoggedIn ? <Main /> : <Login />}
       </div>

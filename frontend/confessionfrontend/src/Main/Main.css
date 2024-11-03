@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: rgb(240, 142, 142);
+    background-color: rgb(194, 210, 210);
     margin: 0;
     padding: 0;
     color: #333;
@@ -15,7 +15,7 @@ h1, h2 {
 .main-container {
     max-width: 800px;
     margin: 20px auto;
-    background-color: #ee69e6;
+    background-color: #35ccf2;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -39,7 +39,7 @@ button {
 }
 
 button.active {
-    background-color: #5944d1;
+    background-color: rgb(99, 106, 236);
     color: white;
 }
 

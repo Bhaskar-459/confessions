@@ -26,5 +26,7 @@ textarea {
 form button {
     align-self: center;
     padding: 10px 20px;
-    background-color: yellow;
+    background-color: rgb(99, 106, 236);
+    color: white;
+
 }
