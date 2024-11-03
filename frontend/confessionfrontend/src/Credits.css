@@ -1,0 +1,10 @@
+.credits-container {
+    padding: 10px;
+    background-color: #f4f4f9;
+    border-top: 2px solid #4caf50;
+}
+
+.credits-text {
+    font-size: 1rem;
+    color: #333;
+}

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import ConfessionCard from './ConfessionCard';
 import CryptoJS from 'crypto-js'; // Import CryptoJS
 
+const secretKey = process.env.REACT_APP_SECRET_KEY;
+const apiurl = process.env.REACT_APP_API_URL;
+
 const MyConfessions = () => {
   const [confessions, setConfessions] = useState([]);
 
   // Function to decrypt a message
   const decryptMessage = (encryptedMessage) => {
-    const secretKey = 'your-secret-key'; // Use the same key as for encryption
     const bytes = CryptoJS.AES.decrypt(encryptedMessage, secretKey);
     return bytes.toString(CryptoJS.enc.Utf8);
   };
@@ -17,8 +19,9 @@ const MyConfessions = () => {
     const fetchConfessions = async () => {
       try {
         let username = localStorage.getItem('username');
-        const response = await fetch(`http://localhost:5000/api/recievedmsgs/${username}`);
+        const response = await fetch(`${apiurl}/api/recievedmsgs/${username}`);
         const data = await response.json();
+        console.log('Data:', secretKey, data);
 
         // Decrypt each confession message before updating the state
         if (data.recievedmsgs) {
@@ -27,6 +30,7 @@ const MyConfessions = () => {
             message: decryptMessage(confession.message),
           }));
           setConfessions(decryptedMessages);
+          console.log('Confessions:', confessions);
         }
       } catch (error) {
         console.error('Error fetching confessions:', error);
