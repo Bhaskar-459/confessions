@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ConfessionCard from './ConfessionCard';
 import CryptoJS from 'crypto-js'; // Import CryptoJS
+import './MyConfessions.css';
 
 const secretKey = process.env.REACT_APP_SECRET_KEY;
 const apiurl = process.env.REACT_APP_API_URL;
@@ -21,8 +22,7 @@ const MyConfessions = () => {
         let username = localStorage.getItem('username');
         const response = await fetch(`${apiurl}/api/recievedmsgs/${username}`);
         const data = await response.json();
-        console.log('Data:', secretKey, data);
-
+        
         // Decrypt each confession message before updating the state
         if (data.recievedmsgs) {
           const decryptedMessages = data.recievedmsgs.map((confession) => ({
@@ -30,7 +30,6 @@ const MyConfessions = () => {
             message: decryptMessage(confession.message),
           }));
           setConfessions(decryptedMessages);
-          console.log('Confessions:', confessions);
         }
       } catch (error) {
         console.error('Error fetching confessions:', error);
@@ -43,15 +42,18 @@ const MyConfessions = () => {
   return (
     <div>
       <h1>Confessions</h1>
-      {confessions.length > 0 ? (
-        confessions.map((confession) => (
-          <ConfessionCard key={confession._id} data={confession} />
-        ))
-      ) : (
-        <p>No confessions available.</p>
-      )}
+      <div className="confession-container">
+        {confessions.length > 0 ? (
+          confessions.map((confession) => (
+            <ConfessionCard key={confession._id} data={confession} />
+          ))
+        ) : (
+          <p>No confessions available.</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default MyConfessions;
+
