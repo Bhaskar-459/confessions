@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CryptoJS from 'crypto-js'; // Import CryptoJS
 import './SendCofession.css';
 
 const SendConfession = () => {
@@ -15,13 +16,17 @@ const SendConfession = () => {
             return;
         }
 
+        // Encrypt the message using a secret key
+        const secretKey = 'your-secret-key'; // Replace with a secure key or environment variable
+        const encryptedMessage = CryptoJS.AES.encrypt(message, secretKey).toString();
+
         try {
             const response = await fetch('http://localhost:5000/api/sendmsg', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ sender, reciever:receiver, message }),
+                body: JSON.stringify({ sender, reciever: receiver, message: encryptedMessage }),
             });
 
             const data = await response.json();

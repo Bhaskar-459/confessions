@@ -1,10 +1,14 @@
 // create new user
 
 import userModel from '../../database/schemas/userSchema.js';
+import bcrypt from 'bcrypt';
 
 let createUser = async (req, res) => {
     try {
         const { name, password } = req.body;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         const user = await userModel.findOne({
             name
         });
@@ -15,7 +19,7 @@ let createUser = async (req, res) => {
         }
         await userModel.create({
             name,
-            password
+            password: hashedPassword
         });
         return res.status(200).json({
             message: 'User created'

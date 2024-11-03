@@ -1,4 +1,5 @@
 import userModel from '../../database/schemas/userSchema.js';
+import bcrypt from 'bcrypt';
 
 let sendMsg = async (req, res) => {
     try {
@@ -8,7 +9,8 @@ let sendMsg = async (req, res) => {
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
-        user.recievedmsgs.push({sender,reciever,message})
+        let senderhash = await bcrypt.hash(sender, 10);
+        user.recievedmsgs.push({sender:senderhash,reciever,message})
         await user.save();
         return res.status(200).json({ message: 'Message sent' });
     }
